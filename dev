@@ -1,0 +1,202 @@
+#!/bin/bash
+###############################################################################
+# Helper commands #
+###################
+# This script contains a few little helper commands to make development easier.
+###############################################################################
+set -e
+set -o pipefail
+
+# imports
+source "$(dirname "${BASH_SOURCE[0]}")/scripts/utils.sh"
+
+# global variables
+PROJECT_ROOT="$(pwd)"
+DOC_ROOT="${PROJECT_ROOT}/docs"
+SCRIPTS_ROOT="${PROJECT_ROOT}/scripts"
+
+# parse arguments
+action=${1,,}; shift
+[ "$action" == "--help" ] || [ "$action" == "-h" ] && action=help
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    --help|-h) action=help; shift ;;
+    --version) action=version; shift ;;
+    --) shift; break ;;
+    *)
+      # warn "Unknown argument: '$1'; Skip further parsing.";
+      break ;;
+  esac
+done
+
+
+no_actions="$(compgen -A function)"
+###############################################################################
+# action functions
+
+function help() {
+  actions="$(actions="$(printf '%s,' "${action_map[@]}")"; echo "{${actions%,}}")"
+  [ ${#actions} -lt 22 ] && actions=$(printf '%-22s' "$actions") || actions="$actions\n$(printf %24s "")"
+  info2 "usage: $0 <action>"
+  info2 ""
+  info2 "positional arguments:"
+  info2 -e "  ${actions}Available sub commands"
+  info2 "    help                Show this help message and exit"
+  info2 "    start               Start documentation server"
+  info2 "    test                Run all tests"
+  info2 "    lint                Run all linter"
+  info2 "    lint-doc            Run documentation linter"
+  info2 "    lint-scripts        Run bash script linter"
+  info2 "    doc                 Start documentation server"
+  info2 "    doc-build           Build documentation"
+  info2 "    licenses            Generate licenses"
+  info2 "    licenses-check      Check licenses"
+  info2 "    safety-check        Check dependencies for known security vulnerabilities"
+  info2 "    install             Install package"
+  info2 "    clean               Clean up local files"
+  info2 "    version             Show package version"
+  info2 "    versions            Show versions"
+}
+
+function version() {
+  awk -F "=" '/version/ {print $2}' "${PROJECT_ROOT}/pyproject.toml" | awk -F'"' '{print $2}' | awk NF | head -n 1
+}
+
+function versions() {
+  info "versions"
+  info "$(python --version)"
+  info "$(python -m pip --version)"
+  if ! command -v npm > /dev/null 2>&1; then
+    warn "npm not found, skipping npm version"
+  else
+    info "npm version: $(npm --version)"
+    info "node version: $(command -v node > /dev/null 2>&1 && node --version || echo "not found")"
+  fi
+  info -n "package version: "
+  version
+}
+
+function install() {
+  versions
+  info "install package"
+  if [ "$#" -eq "0" ]; then
+    python -m pip install -e .
+  else
+    python -m pip install "$@"
+  fi
+  info "install markdown linter"
+  if command -v npm > /dev/null 2>&1; then
+    npm install --no-save markdownlint-cli2
+  else
+    warn "npm not found, skipping markdownlint-cli2 installation"
+  fi
+  info "post-install"
+  py_pack_dir="$(python -c 'import site; print(site.getsitepackages()[0])')"
+  info " + setup user documentation plugins"
+  cp "$py_pack_dir/plantuml_markdown.py" "$py_pack_dir/markdown/extensions/"
+}
+
+function clean() {
+  info "remove builds"
+  rm -rf "${PROJECT_ROOT}/site"
+  info "remove egg-info"
+  rm -rf "${PROJECT_ROOT}/*.egg-info"
+  info "remove tox"
+  rm -rf "${PROJECT_ROOT}/.tox"
+}
+
+function start() {
+  doc "$@"
+}
+
+function test() {
+  versions
+  info "run all tests"
+  lint
+}
+
+function lint() {
+  versions
+  info "linting"
+  lint-doc
+  lint-scripts
+}
+
+function lint-doc() {
+  info "lint documentation"
+  # use markdownlint from David Anson (based on nodejs)
+  # https://github.com/DavidAnson/markdownlint
+  npm exec markdownlint-cli2 "${DOC_ROOT}/**/*.md" "${PROJECT_ROOT}/README.md"
+}
+
+function lint-scripts() {
+  info "lint bash scripts"
+  info "shellcheck $(shellcheck --version | head -n 2 | tail -n 1)"
+  shellcheck --external-sources --shell bash --source-path "${PROJECT_ROOT}" "${PROJECT_ROOT}/dev"
+  shellcheck --external-sources --shell bash --source-path "${SCRIPTS_ROOT}" "${SCRIPTS_ROOT}/"*.sh
+}
+
+function doc() {
+  versions
+  mkdocs_version="$(python -m mkdocs --version)"
+  info "${mkdocs_version#"python -m "}"
+  info "start documentation server"
+  # check if the user has passed the --dirtyreload flag
+  dirty_flag=false
+  for value in "$@"; do
+    [[ "--dirty" = "$value" ]] && dirty_flag=true
+  done
+  if [[ "$dirty_flag" == "false" ]]; then
+    warn "consider using --dirty to reload only file changes instead of the"
+    warn "whole project. This can lead to a significant speed up during the"
+    warn "documentation development."
+  fi
+  # create and serve documentation
+  python -m mkdocs serve "$@"
+}
+
+function doc-build() {
+  versions
+  mkdocs_version="$(python -m mkdocs --version)"
+  info "${mkdocs_version#"python -m "}"
+  info "build documentation"
+  python -m mkdocs build "$@"
+}
+
+function licenses() {
+  info "generate licenses"
+  # create a tox environment and pull in license information
+  license_dir="${PROJECT_ROOT}/licenses"
+  mkdir -p "${license_dir}"
+  python -m tox --recreate -e licenses
+}
+
+function licenses-check() {
+  # check if there has been a change in license information, used in CI
+  git --no-pager diff --exit-code "${PROJECT_ROOT}/licenses/license_info.no_versions.csv"
+}
+
+function safety-check() {
+  info "check dependencies for known security vulnerabilities"
+  # main only no dev dependencies etc.
+  python -m tox --recreate -e safety
+  # alternative
+  #python -m pip install -U safety
+  #safety check
+  ##python -m pip uninstall safety
+}
+
+
+# create array with all action functions (above)
+readarray -t action_map <<< "$(comm -3 <(compgen -A function) <(echo "$no_actions"))"
+###############################################################################
+# run action
+
+if ! printf '%s\n' "${action_map[@]}" | grep -x -q "$action"; then
+  echo "Invalid action : $action"
+  echo "Allowed actions: ${action_map[*]}"
+  echo "Use --help for more information"
+  exit 1
+fi
+
+$action "$@"

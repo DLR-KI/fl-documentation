@@ -1,0 +1,105 @@
+site_name: Federated Learning Platform
+
+repo_name: fl-documentation
+repo_url: https://github.com/DLR-KI/fl-documentation
+
+theme:
+  name: material
+  custom_dir: docs/.overrides
+  features:
+    - content.code.annotate
+    - content.code.copy
+    - content.tabs.link
+    - navigation.footer
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.path
+    - navigation.indexes
+    - navigation.top
+    - search.highlight
+    - search.suggest
+  language: en
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+      primary: teal
+      accent: deep purple
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+      primary: teal
+      accent: blue
+
+markdown_extensions:
+  - attr_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+  - plantuml_markdown:
+      server: http://www.plantuml.com/plantuml
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.blocks.admonition
+  - pymdownx.blocks.details
+  - pymdownx.blocks.tab:
+      alternate_style: true
+  - pymdownx.caret
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.saneheaders
+  - pymdownx.smartsymbols
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tilde
+
+plugins:
+  - search
+
+extra:
+  social:
+    - icon: dlr-logo
+      link: https://www.dlr.de/en
+    - icon: dlr-ki
+      link: https://www.dlr.de/ki/en
+    - icon: fontawesome/brands/square-gitlab
+      link: https://github.com/DLR-KI/fl-demonstrator
+
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js
+  - javascripts/katex.js
+
+extra_css:
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css
+  - styles/style.css
+
+copyright: |
+  &copy; 2024
+  <a href="https://www.dlr.de/en/ki/about-us/departments/algorithms-hybrid-solutions" target="_blank" rel="noopener">
+    DLR KI ALG
+  </a>
+
+nav:
+  - Home:
+    - index.md
+    #- Federated Learning: fl/federated_learning.md
+  - Aggregation: aggregation/index.md
+  - Uncertainty: uncertainty/index.md
+  - Tutorial:
+    - tutorial/index.md
+    - "Basic Knowledge": tutorial/basic-knowledge.md
+    - "Components and Interation": tutorial/components.md
+    - "Client $\\leftrightarrow$ Server communication": tutorial/communication.md
+    - "Code Snippets": tutorial/code-snippets.md
+    - "Test Ecosystem Environment": tutorial/testing.md
