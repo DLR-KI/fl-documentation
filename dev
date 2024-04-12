@@ -93,7 +93,7 @@ function install() {
   info "post-install"
   py_pack_dir="$(python -c 'import site; print(site.getsitepackages()[0])')"
   info " + setup user documentation plugins"
-  cp "$py_pack_dir/plantuml_markdown.py" "$py_pack_dir/markdown/extensions/"
+  cp "$py_pack_dir/plantuml_markdown/plantuml_markdown.py" "$py_pack_dir/markdown/extensions/"
 }
 
 function clean() {

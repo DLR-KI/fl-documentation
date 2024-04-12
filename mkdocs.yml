@@ -5,14 +5,13 @@ repo_url: https://github.com/DLR-KI/fl-documentation
 
 theme:
   name: material
-  custom_dir: docs/.overrides
+  custom_dir: overrides
   features:
     - content.code.annotate
     - content.code.copy
     - content.tabs.link
     - navigation.footer
     - navigation.tabs
-    - navigation.sections
     - navigation.expand
     - navigation.path
     - navigation.indexes
@@ -93,13 +92,19 @@ copyright: |
 nav:
   - Home:
     - index.md
-    #- Federated Learning: fl/federated_learning.md
+  - Architecture: architecture/index.md
   - Aggregation: aggregation/index.md
   - Uncertainty: uncertainty/index.md
   - Tutorial:
     - tutorial/index.md
-    - "Basic Knowledge": tutorial/basic-knowledge.md
-    - "Components and Interation": tutorial/components.md
-    - "Client $\\leftrightarrow$ Server communication": tutorial/communication.md
-    - "Code Snippets": tutorial/code-snippets.md
-    - "Test Ecosystem Environment": tutorial/testing.md
+    - "Introduction":
+      - "Basic Knowledge": tutorial/introduction/basic-knowledge.md
+      - "Platform Components": tutorial/introduction/components.md
+      - "Client $\\leftrightarrow$ Server communication": tutorial/introduction/communication.md
+    - "Create your own Client":
+      - "Getting started": tutorial/your-own-client/getting-started.md
+    - "MNIST Example Client":
+      - "Getting Started": tutorial/fl-mnist-client/getting-started.md
+      - "Setup Test Environment": tutorial/fl-mnist-client/setup.md
+      - "Start the Test": tutorial/fl-mnist-client/start.md
+      - "FL Client Package": tutorial/fl-mnist-client/fl-mnist-client.md

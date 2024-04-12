@@ -1,10 +1,6 @@
-# Code Snippets
+# The `fl-demonstrator-mnist` package
 
-In this section, we won't discuss into the entire source code, but rather concentrate on the key components.
-We're assuming that you're developing our Machine Learning training script using Python and the auxiliary
-[`fl-demonstrator-client`][1] package.
-Keep in mind, if you diverge from this approach, you'll need to create your own web server or endpoint and handle all
-the communication yourself.
+In this section, we describe the key components [`fl-demonstrator-mnist`][1] package.
 
 Since the whole MNIST example client project code is open source, you can clone or fork it anytime.
 If it captures your interest, don't hesitate to explore the code further.
@@ -12,7 +8,7 @@ You can even utilize the entire project as a template for your own future innova
 
 ## Files
 
-This example client project contains many files.
+The [`fl-demonstrator-mnist`][1] example client project contains many files.
 Nevertheless, a few of these files hold greater significance and thus require additional consideration.
 In essence, three or four primary files in this project serve as the core structure for your own training script:
 
@@ -38,16 +34,16 @@ Please note that these settings pertain to the project, such as the IP address a
 notification endpoint should listen, and not to the settings of the Machine Learning training itself.
 Possible setting module variables are:
 
-| Variable                                    | Description<br/>Default                                                                      |
-|:--------------------------------------------|:---------------------------------------------------------------------------------------------|
-| `FL_DEMONSTRATOR_BASE_URL`                  | Base URL of the FL Demonstrator server.<br/>Default: `http://localhost:8000`                 |
-| `FL_DEMONSTRATOR_TRAINING_SCRIPT_EXECUTOR`  | Path to the script executor.<br/>Default: `python`                                           |
-| `FL_DEMONSTRATOR_TRAINING_SCRIPT_PATH`      | Path to the training script.<br/>Default: `src/train.py`                                     |
-| `FL_DEMONSTRATOR_TRAINING_WORKING_DIRETORY` | Working directory for the training script.<br/>Default: `.`                                  |
-| `SERVER_HOST` :material-information-outline:{ title="Deviating environment variable name: FL_CLIENT_SERVER_HOST" } | Client server hostname.<br/>Default: `0.0.0.0` |
-| `SERVER_PORT` :material-information-outline:{ title="Deviating environment variable name: FL_CLIENT_SERVER_PORT" } | Client server port.<br/>Default: `8101` |
-| `MAIN_MODULE`                               | Main entry point of the client server.<br/>Default: `dlr.fl.client.__main__.default_main`    |
-| `COMMUNICATION_MODULE`                      | Communication module of the client.<br/>Default: `dlr.fl.client.communication.Communication` |
+| Variable                                                                                                           | Description<br/>Default                                                                      |
+| :----------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------- |
+| `FL_DEMONSTRATOR_BASE_URL`                                                                                         | Base URL of the FL Demonstrator server.<br/>Default: `http://localhost:8000`                 |
+| `FL_DEMONSTRATOR_TRAINING_SCRIPT_EXECUTOR`                                                                         | Path to the script executor.<br/>Default: `python`                                           |
+| `FL_DEMONSTRATOR_TRAINING_SCRIPT_PATH`                                                                             | Path to the training script.<br/>Default: `src/train.py`                                     |
+| `FL_DEMONSTRATOR_TRAINING_WORKING_DIRETORY`                                                                        | Working directory for the training script.<br/>Default: `.`                                  |
+| `SERVER_HOST` :material-information-outline:{ title="Deviating environment variable name: FL_CLIENT_SERVER_HOST" } | Client server hostname.<br/>Default: `0.0.0.0`                                               |
+| `SERVER_PORT` :material-information-outline:{ title="Deviating environment variable name: FL_CLIENT_SERVER_PORT" } | Client server port.<br/>Default: `8101`                                                      |
+| `MAIN_MODULE`                                                                                                      | Main entry point of the client server.<br/>Default: `dlr.fl.client.__main__.default_main`    |
+| `COMMUNICATION_MODULE`                                                                                             | Communication module of the client.<br/>Default: `dlr.fl.client.communication.Communication` |
 
 /// details | Pay attention to environment variables
     type: note
@@ -58,7 +54,7 @@ Also, if both the environment variable and the settings variable are set, the se
 
 Also, be aware that not all settings variables can be accessed as environment variables.
 A list of the supported environment variables can be found in the
-[Environment Variables](./testing.md#environment-variables) section.
+[Environment Variables](./setup.md#environment-variables) section.
 
 ///
 
@@ -257,6 +253,9 @@ The complete set of adjustable parameters includes:
 
 - `log_interval`: The log interval is set to `20` by default.
 
+<!-- invisible header - only for linking purposes -->
+<h4 id="logging"></h4>
+
 The `Config` class is also responsible for managing the logging object handle, implying that it oversees file or stream
 resources such as the `SummaryWriter` used for logging purposes.
 
@@ -396,8 +395,8 @@ As a standard, this example project calculates the following metrics:
 - **Precision**: Precision is the proportion of positive identifications that were actually correct.
     It's important in situations where false positives are more costly than false negatives.
 
-[1]: https://github.com/DLR-KI/fl-demonstrator-client
-[2]: https://docs.python.org/3/library/pickle.html
+[1]: https://github.com/DLR-KI/fl-demonstrator-mnist
+[2]: https://docs.python.org/3/library/pickle.html  
 [3]: https://pytorch.org/docs/stable/data.html#torch.utils.data.Dataset
 [4]: http://yann.lecun.com/exdb/mnist
 [5]: https://pytorch.org/tutorials/beginner/basics/intro.html

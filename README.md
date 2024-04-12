@@ -37,6 +37,9 @@ python -m pip install -U pip
 
 # install
 ./dev install -U -e ".[all]"
+
+# start the server (optional)
+./dev start 
 ```
 
 ## Helpers

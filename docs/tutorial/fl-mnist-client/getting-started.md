@@ -1,15 +1,4 @@
-# Components and Interation
-
-![DLR Federated Learning Ecosystem](../assets/tutorial/ecosystem.drawio.png)
-
-The DLR Federated Learning ecosystem you will work on involves two main components: the server and the clients.
-Communication between these components is crucial, especially for the exchange of model and metadata.
-An independent component of this setup is the statistics web server, which simply provides model statistics and other
-useful information.
-
-While the server in this architecture is mainly fixed, the client-side training is flexible.
-You have the freedom to create and shape your own client training, tailoring it to your specific needs and objectives.
-This flexibility allows for a more personalized and efficient approach to Machine learning.
+# Getting Started
 
 In the following tutorial, you will create a simple project to train models based on the popular [MNIST][1] dataset.
 This dataset is a large collection of handwritten digits and is widely used in the field of Machine learning and image
@@ -30,14 +19,12 @@ However, it's important to note that this example does not involve Federated Lea
 Hence, you will create it :winking_face:.
 
 To assist you in this process, the DLR Federated Learning Ecosystem provides a small Python package:
-[`fl-demonstrator-client`][4].
-This package is specifically designed to support the development of Federated Learning clients inside the DLR Federated
-Learning Ecosystem, providing a range of tools and convenient features to streamline the process.
-It should be noted that this package is not really required or necessary, but by e.g. handling all the communication
-parts, it allows you to focus on the unique aspects of your client, speeding up development time and reducing the
-potential for errors.
+[`fl-demonstrator-mnist`][5].
+This package implements tools and algorithms to train models based on the MNIST database.
 
-The complete [MNIST example client project and code][5] is open source and can be found on GitLab.
+It uses the [`fl-demonstrator-client`][4] package as a dependency which facilities all the client-server communication. In the chapter [Create your own client](../your-own-client/getting-started.md) you will use this package to create your own federated learning client.
+
+Both packages are open source and can be found on Github.
 
 [1]: http://yann.lecun.com/exdb/mnist
 [2]: https://github.com/pytorch/examples/blob/55c663f9a50f79cb6a905c56d886343c555d34a9/mnist/main.py

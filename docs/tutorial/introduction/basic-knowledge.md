@@ -27,7 +27,7 @@ So, in essence, Machine Learning is a form of applied statistics and comes with 
 
 ## Federated Learning
 
-![Federated Learning](../assets/tutorial/federated-learning.png){width=40%, align=right}
+![Federated Learning](../../assets/tutorial/federated-learning.png){width=40%, align=right}
 
 Federated Learning is a Machine learning approach where a model is trained across multiple decentralized devices or
 servers holding local data samples, without exchanging them.
@@ -52,14 +52,14 @@ Some of these challenges, which can have a major impact on training, are:
     - Problem of **client heterogeneity**: local models drift away from true optima $\rightarrow$ must use specialized
         averaging strategies (FedProx, FedDC, ...)
     <figure markdown>
-        ![heterogeneous and homogeneous setting](../assets/tutorial/hetero+homogeneous-setting.png)
+        ![heterogeneous and homogeneous setting](../../assets/tutorial/hetero+homogeneous-setting.png)
         <figcaption>
             Heterogeneous and homogeneous setting [[Source][2]]
         </figcaption>
     </figure>
 - **Unbalanced data**: Some users produce more data than others
     <figure markdown>
-        ![unbalanced data](../assets/tutorial/unbalanced-data.png)
+        ![unbalanced data](../../assets/tutorial/unbalanced-data.png)
         <figcaption>
             Unbalanced data distribution [[Source][3]]
         </figcaption>
