@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2024 Benedikt Franke <benedikt.franke@dlr.de>
+SPDX-FileCopyrightText: 2024 Florian Heinrich <florian.heinrich@dlr.de>
+
+SPDX-License-Identifier: CC-BY-4.0
+-->
+
 # Getting Started
 
 In the following tutorial, you will create a simple project to train models based on the popular [MNIST][1] dataset.

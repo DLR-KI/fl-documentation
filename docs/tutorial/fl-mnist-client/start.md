@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2024 Benedikt Franke <benedikt.franke@dlr.de>
+SPDX-FileCopyrightText: 2024 Florian Heinrich <florian.heinrich@dlr.de>
+
+SPDX-License-Identifier: CC-BY-4.0
+-->
+
 # Get real
 
 Once all the preparations are complete, we can finally initiate all required components, proceed with the entire process
@@ -10,6 +17,15 @@ preparations are complete, you can execute the `/scripts/all.sh` script.
 If you're utilizing the `all.sh` script, please press ++ctrl+c++ after the training is finished.
 If you opt to simply close or terminate the terminal running the `all.sh` script, the server and client components
 won't be shut down and no final cleanup will be performed.
+
+/// details | Hint
+    type: hint
+    open: True
+
+If we get problems and want to start again, please make sure to clean up first.
+See the [cleanup section](#clean-up) below.
+
+///
 
 ```bash
 # Navigate into the MNIST example client project
@@ -46,9 +62,9 @@ Now that everything is set up.
 If you are starting everything for the first time and didn't disable the MinIO logging which is futher described
 [here](./fl-mnist-client.md#logging),
 lets look into MinIO for a bit before we finally begin the training.
-By default, you should noe be able to visit your local MinIO instance: <http://localhost:9001>.
+By default, you should now be able to visit your local MinIO instance: <http://localhost:9001>.
 The preset username and password are `admin` and `password` which can be changed inside the `/server.env` file of the MNIST example client project.
-After your successful login, you should know be able to manage your MinIO instance.
+After your successful login, you should now be able to manage your MinIO instance.
 In our case we would like to navigate to _Administrator > Buckets_ and create a new bucket names `trainings`.
 This bucket will later be used to store all kind of debug and logging information which are written to the tensorboard.
 It is a quite useful setup at least during the development stage.
@@ -75,6 +91,9 @@ docker logs -f frontend
 ```
 
 Then you can navigate to: <http://localhost:8080>.
+
+<!-- invisible header - only for linking purposes -->
+<h2 id="clean-up"></h4>
 
 After you finished your examinations, you can stop the `docker logs` commands by pressing ++ctrl+c++ or by closing their
 terminal sessions.

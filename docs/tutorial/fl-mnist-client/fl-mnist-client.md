@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2024 Benedikt Franke <benedikt.franke@dlr.de>
+SPDX-FileCopyrightText: 2024 Florian Heinrich <florian.heinrich@dlr.de>
+
+SPDX-License-Identifier: CC-BY-4.0
+-->
+
 # The `fl-demonstrator-mnist` package
 
 In this section, we describe the key components [`fl-demonstrator-mnist`][1] package.

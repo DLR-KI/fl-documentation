@@ -1,8 +1,12 @@
+# SPDX-FileCopyrightText: 2024 Benedikt Franke <benedikt.franke@dlr.de>
+# SPDX-FileCopyrightText: 2024 Florian Heinrich <florian.heinrich@dlr.de>
+#
+# SPDX-License-Identifier: Apache-2.0
+
 # ignore nodejs requirements for markdown linting
 node_modules
 package-lock.json
 package.json
-
 
 # Created by https://www.toptal.com/developers/gitignore/api/linux,python,windows,libreoffice,microsoftoffice,visualstudiocode,node
 # Edit at https://www.toptal.com/developers/gitignore?templates=linux,python,windows,libreoffice,microsoftoffice,visualstudiocode,node

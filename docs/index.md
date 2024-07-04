@@ -3,6 +3,12 @@ title: Home
 hide:
     - navigation
 ---
+<!--
+SPDX-FileCopyrightText: 2024 Benedikt Franke <benedikt.franke@dlr.de>
+SPDX-FileCopyrightText: 2024 Florian Heinrich <florian.heinrich@dlr.de>
+
+SPDX-License-Identifier: CC-BY-4.0
+-->
 
 <!-- markdownlint-disable-next-line MD025 -->
 # Federated Learning Platform Documentation
@@ -10,6 +16,22 @@ hide:
 The Federated Learning Platform from the [German Aerospace Center (DLR)](https://www.dlr.de/en) is launched as
 part of the [Catena-X Automotive Network](https://catena-x.net/en) project which was sponsored by the
 [German Federal Ministry of Economics Affairs and Climate Action](https://www.bmwk.de/Navigation/EN/Home/home.html).
+
+<div>
+    <div style="display: inline-block; width: 42%;">
+        <img src="./assets/logo/DLR_Logo_EN_black.svg#only-light" alt="DLR" style="width: 100%;" />
+        <img src="./assets/logo/DLR_Logo_EN_white.svg#only-dark" alt="DLR" style="width: 100%" />
+        <div style="text-align: center;">
+            <img src="./assets/logo/catena-x-black.svg#only-light" alt="Catena-X" style="width: 80%;" />
+            <img src="./assets/logo/catena-x-white.svg#only-dark" alt="Catena-X" style="width: 80%;" />
+        </div>
+    </div>
+    <div style="display: inline-block; width: 55%; float: right;">
+        <img src="./assets/logo/EN_fundedbyEU_VERTICAL_RGB_POS.svg#only-light" alt="European Union" style="width: 44%;" />
+        <img src="./assets/logo/EN_fundedbyEU_VERTICAL_RGB_NEG.svg#only-dark" alt="European Union" style="width: 44%;" />
+        <img src="./assets/logo/bmwk_en.png" alt="BMWK" style="width: 44%; float: right;" />
+    </div>
+</div>
 
 The entire platform is a Prove of Concept (PoC).
 It is intended to show that decentralized machine learning is possible in the industry and the Catena-X automotive network.

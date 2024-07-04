@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2024 Benedikt Franke <benedikt.franke@dlr.de>
+# SPDX-FileCopyrightText: 2024 Florian Heinrich <florian.heinrich@dlr.de>
+#
+# SPDX-License-Identifier: Apache-2.0
+
 [project]
 # This is the name of your project. The first time you publish this
 # package, this name will be registered for you. It will determine how
@@ -117,9 +122,11 @@ dependencies = [] # Optional
 dev = [
   "mkdocs-material~=9.5.4",
   "plantuml-markdown~=3.9.2",  # post-install: cp plantuml_markdown.py into markdown/extensions
+  "reuse~=3.0.2",
   "tox~=4.5.1"
 ]
 test = [
+  "licensecheck",  # no version, install latest version
   "shellcheck-py~=0.9.0.6",
 ]
 all = ["fl-documentation[dev,test]"]
@@ -154,4 +161,14 @@ all = ["fl-documentation[dev,test]"]
 # installed, specify them here.
 packages = []
 #package-data = {"" = ["py.typed"]}
-license-files = ["LICENSE"]
+license-files = ["LICENSES/Apache-2.0.txt", "LICENSES/CC-BY-4.0.txt", "LICENSES/LicenseRef-Proprietary.txt"]
+
+#######################################################################################################################
+
+# licensecheck
+# https://github.com/FHPythonUtils/LicenseCheck/blob/master/README.md
+
+[tool.licensecheck]
+using = "PEP631"
+#using = "PEP631:dev;test;stubs;doc"
+zero = true

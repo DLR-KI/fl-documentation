@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2024 Benedikt Franke <benedikt.franke@dlr.de>
+SPDX-FileCopyrightText: 2024 Florian Heinrich <florian.heinrich@dlr.de>
+
+SPDX-License-Identifier: CC-BY-4.0
+-->
+
 # Basic Knowledge
 
 To follow the tutorial and understand what it does and why you do this, it is very important to at least know what

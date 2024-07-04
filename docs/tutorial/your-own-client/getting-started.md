@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2024 Benedikt Franke <benedikt.franke@dlr.de>
+SPDX-FileCopyrightText: 2024 Florian Heinrich <florian.heinrich@dlr.de>
+
+SPDX-License-Identifier: CC-BY-4.0
+-->
+
 # Getting Started
 
 The [`fl-demonstrator-client`][1] package is specifically designed to support the development of Federated Learning clients inside the DLR Federated

@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2024 Benedikt Franke <benedikt.franke@dlr.de>
+# SPDX-FileCopyrightText: 2024 Florian Heinrich <florian.heinrich@dlr.de>
+#
+# SPDX-License-Identifier: Apache-2.0
+
 name: Main
 
 on:
@@ -24,8 +29,21 @@ jobs:
       - name: Start shell script analysis tool
         run: bash ./dev lint-scripts
 
+  license-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+      - name: Install dependencies
+        run: bash ./dev install -e ".[all]"
+      - name: Start license check
+        run: bash ./dev licenses
+
   build-pages:
-    needs: [lint-doc, lint-scripts]
+    needs: [lint-doc, lint-scripts, license-check]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

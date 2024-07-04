@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2024 Benedikt Franke <benedikt.franke@dlr.de>
+SPDX-FileCopyrightText: 2024 Florian Heinrich <florian.heinrich@dlr.de>
+
+SPDX-License-Identifier: CC-BY-4.0
+-->
+
 # Components and Iteration
 
 ![DLR Federated Learning Ecosystem](../../assets/tutorial/ecosystem.drawio.png)
@@ -9,7 +16,7 @@ useful information.
 
 ## Server
 
-The server is implemented in the [`fl-demonstrator`](https://github.com/DLR-KI/fl-demonstrator) package. The server in this architecture is mainly fixed.
+The server is implemented in the [`fl-demonstrator`][3] package. The server in this architecture is mainly fixed.
 
 ## Clients
 
@@ -21,7 +28,7 @@ There are three approaches to implement the clients which are increasingly more 
 
 ### First Approach
 
-Use the [`fl-demonstrator-mnist`][1] package as a client. This package is specifically tailored to train a model based on the popular [MNIST][1] dataset. The procedure to set up a test environment with this package is described in the next chapter.
+Use the [`fl-demonstrator-mnist`][4] package as a client. This package is specifically tailored to train a model based on the popular [MNIST][1] dataset. The procedure to set up a test environment with this package is described in the next chapter.
 
 | difficulty | flexibility |
 | ---------- | ----------- |
@@ -43,5 +50,7 @@ Create your own web server or endpoint and handle all the communication yourself
 | ---------- | ----------- |
 | high       | high        |
 
-[1]: http://yann.lecun.com/exdb/mnist
+[1]: http://yann.lecun.com/exdb/mnist/
 [2]: https://github.com/DLR-KI/fl-demonstrator-client
+[3]: https://github.com/DLR-KI/fl-demonstrator
+[4]: https://github.com/DLR-KI/fl-demonstrator-mnist
