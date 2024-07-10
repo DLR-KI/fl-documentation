@@ -69,6 +69,7 @@ markdown_extensions:
 
 plugins:
   - search
+  - mkdocs-video
 
 extra:
   social:
@@ -113,3 +114,4 @@ nav:
       - "Setup Test Environment": tutorial/fl-mnist-client/setup.md
       - "Start the Test": tutorial/fl-mnist-client/start.md
       - "FL Client Package": tutorial/fl-mnist-client/fl-mnist-client.md
+  - Frontend: frontend/index.md
