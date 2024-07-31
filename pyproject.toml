@@ -15,19 +15,19 @@
 # There are some restrictions on what makes a valid project name
 # specification here:
 # https://packaging.python.org/specifications/core-metadata/#name
-name = "fl-documentation"  # Required
+name = "fl-documentation" # Required
 
 # Versions should comply with PEP 440:
 # https://www.python.org/dev/peps/pep-0440/
 #
 # For a discussion on single-sourcing the version, see
 # https://packaging.python.org/guides/single-sourcing-package-version/
-version = "0.0.2.dev0"  # Required
+version = "0.0.2.dev0" # Required
 
 # This is a one-line description or tagline of what your project does. This
 # corresponds to the "Summary" metadata field:
 # https://packaging.python.org/specifications/core-metadata/#summary
-description = "Federated Learning Platform Documentation"  # Optional
+description = "Federated Learning Platform Documentation" # Optional
 
 # This is an optional longer description of your project that represents
 # the body of text which users will see when they visit PyPI.
@@ -48,7 +48,7 @@ requires-python = ">=3.7"
 # This is either text indicating the license for the distribution, or a file
 # that contains the license
 # https://packaging.python.org/en/latest/specifications/core-metadata/#license
-license = {text = "Creative Commons Attribution 4.0 International"}
+license = { text = "Creative Commons Attribution 4.0 International" }
 # license file see: [tool.setuptools] -> license-files
 
 # This field adds keywords for your project which will appear on the
@@ -57,27 +57,34 @@ license = {text = "Creative Commons Attribution 4.0 International"}
 # Note that this is a list of additional keywords, separated
 # by commas, to be used to assist searching for the distribution in a
 # larger catalog.
-keywords = ["ai", "federated learning", "catena-x", "dlr", "demonstrator", "documentation"]  # Optional
+keywords = [
+  "ai",
+  "federated learning",
+  "catena-x",
+  "dlr",
+  "demonstrator",
+  "documentation",
+] # Optional
 
 # This should be your name or the name of the organization who originally
 # authored the project, and a valid email address corresponding to the name
 # listed.
-authors = [  # Optional
-  {name="Benedikt Franke", email="benedikt.franke@dlr.de"},
-  {name="Florian Heinrich", email="florian.heinrich@dlr.de"},
+authors = [ # Optional
+  { name = "Benedikt Franke", email = "benedikt.franke@dlr.de" },
+  { name = "Florian Heinrich", email = "florian.heinrich@dlr.de" },
 ]
 
 # This should be your name or the names of the organization who currently
 # maintains the project, and a valid email address corresponding to the name
 # listed.
-maintainers = [  # Optional
+maintainers = [ # Optional
   # {name="Jane Doe", email="jane.doe@example.com"}
 ]
 
 # Classifiers help users find your project by categorizing it.
 #
 # For a list of valid classifiers, see https://pypi.org/classifiers/
-classifiers = [  # Optional
+classifiers = [ # Optional
   # How mature is this project? Common values are
   #   3 - Alpha
   #   4 - Beta
@@ -121,12 +128,12 @@ dependencies = [] # Optional
 [project.optional-dependencies] # Optional
 dev = [
   "mkdocs-material~=9.5.4",
-  "plantuml-markdown~=3.9.2",  # post-install: cp plantuml_markdown.py into markdown/extensions
+  "plantuml-markdown~=3.9.2", # post-install: cp plantuml_markdown.py into markdown/extensions
   "reuse~=4.0.3",
-  "tox~=4.5.1"
+  "tox~=4.5.1",
 ]
 test = [
-  "licensecheck",  # no version, install latest version
+  "licensecheck",           # no version, install latest version
   "shellcheck-py~=0.9.0.6",
 ]
 all = ["fl-documentation[dev,test]"]
@@ -141,7 +148,7 @@ all = ["fl-documentation[dev,test]"]
 # issues, where the source is hosted, where to say thanks to the package
 # maintainers, and where to support the project financially. The key is
 # what's used to render the link text on PyPI.
-[project.urls]  # Optional
+[project.urls] # Optional
 "Homepage" = "https://github.com/DLR-KI/fl-documentation"
 "Bug Tracker" = "https://github.com/DLR-KI/fl-documentation/issues"
 #"Changelog" = "https://github.com/DLR-KI/fl-documentation/blob/main/CHANGELOG.md"
@@ -151,7 +158,7 @@ all = ["fl-documentation[dev,test]"]
 
 # The following would provide a command line executable called `fl-documentation`
 # which executes the function `main` inside `__main__.py` from this package when invoked.
-[project.scripts]  # Optional
+[project.scripts] # Optional
 #fl-documentation = "???.__main__:main"
 
 # This is configuration specific to the `setuptools` build backend.
@@ -161,7 +168,11 @@ all = ["fl-documentation[dev,test]"]
 # installed, specify them here.
 packages = []
 #package-data = {"" = ["py.typed"]}
-license-files = ["LICENSES/Apache-2.0.txt", "LICENSES/CC-BY-4.0.txt", "LICENSES/LicenseRef-Proprietary.txt"]
+license-files = [
+  "LICENSES/Apache-2.0.txt",
+  "LICENSES/CC-BY-4.0.txt",
+  "LICENSES/LicenseRef-Proprietary.txt",
+]
 
 #######################################################################################################################
 
