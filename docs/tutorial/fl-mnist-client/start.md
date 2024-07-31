@@ -57,8 +57,6 @@ docker logs -f celery
 docker compose --env-file ./responses/participants.env up -d --build
 ```
 
-Now that everything is set up.
-
 If you are starting everything for the first time and didn't disable the MinIO logging which is futher described
 [here](./fl-mnist-client.md#logging),
 lets look into MinIO for a bit before we finally begin the training.
@@ -69,7 +67,32 @@ In our case we would like to navigate to _Administrator > Buckets_ and create a 
 This bucket will later be used to store all kind of debug and logging information which are written to the tensorboard.
 It is a quite useful setup at least during the development stage.
 
-Now, lets finally start the training.
+/// details | Create MinIO Bucket via terminal
+    type: tip
+    open: True
+
+Instead of using the MinIO web interface, you can also create the `trainings` bucket via the terminal.
+The easiest method is to use the MinIO client `mc`, which can be installed locally or used from a designated Docker container.
+
+To use the following command from inside the designated Docker container, start its terminal with:
+
+```bash
+docker run -it --entrypoint /bin/bash minio/mc
+```
+
+Then, create the bucket using the MinIO client:
+
+```bash
+# create an alias 'myminio' with your server URL and credentials
+mc alias set myminio http://localhost:9000 admin password
+# create the bucket 'trainings'
+mc mb myminio/trainings
+```
+
+///
+
+Now everything is set up.
+Lets finally start the training.
 
 ```bash
 # Start training via FL Demonstrator
@@ -92,8 +115,15 @@ docker logs -f frontend
 
 Then you can navigate to: <http://localhost:8080>.
 
+The example trainings actor user credentials are:
+
+- username: `mnist-client-01`
+- password: `mnist-secret`
+
+Following this pattern, other participants, which are only clients and no actors, can log in with usernames `mnist-client-02` to `mnist-client-10`, all using `mnist-secret` as the password.
+
 <!-- invisible header - only for linking purposes -->
-<h2 id="clean-up"></h4>
+<h2 id="clean-up"></h2>
 
 After you finished your examinations, you can stop the `docker logs` commands by pressing ++ctrl+c++ or by closing their
 terminal sessions.

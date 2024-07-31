@@ -129,9 +129,8 @@ dependencies = [] # Optional
 dev = [
   "mkdocs-material~=9.5.4",
   "plantuml-markdown~=3.9.2", # post-install: cp plantuml_markdown.py into markdown/extensions
-  "reuse~=3.0.2",
+  "reuse~=4.0.3",
   "tox~=4.5.1",
-  "mkdocs-video",
 ]
 test = [
   "licensecheck",           # no version, install latest version
