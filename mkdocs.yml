@@ -69,7 +69,6 @@ markdown_extensions:
 
 plugins:
   - search
-  - mkdocs-video
 
 extra:
   social:
