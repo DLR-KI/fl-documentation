@@ -40,7 +40,7 @@ authors:
     orcid: 'https://orcid.org/0009-0004-5430-5587'
 identifiers:
   - type: doi
-    value: 10.5281/zenodo.13951180
+    value: 10.5281/zenodo.13951203
 repository-code: 'https://github.com/DLR-KI/fl-documentation'
 url: 'https://dlr-ki.github.io/fl-documentation/'
 keywords:
