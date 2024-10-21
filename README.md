@@ -7,6 +7,8 @@ SPDX-License-Identifier: Apache-2.0
 
 # Federated Learning Platform Documentation
 
+[![DOI](https://zenodo.org/badge/770440130.svg)](https://doi.org/10.5281/zenodo.13951202 )
+
 This repository contains the official documentation of the Federated Learning platform.
 The whole documentation is written in markdown and rendered with [MkDocs](https://www.mkdocs.org) and its [material theme](https://squidfunk.github.io/mkdocs-material).
 
