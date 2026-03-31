@@ -1,7 +1,5 @@
 <!--
-SPDX-FileCopyrightText: 2024 Benedikt Franke <benedikt.franke@dlr.de>
-SPDX-FileCopyrightText: 2024 Florian Heinrich <florian.heinrich@dlr.de>
-
+SPDX-FileCopyrightText: 2024 2026 German Aerospace Center (DLR)
 SPDX-License-Identifier: Apache-2.0
 -->
 
@@ -45,7 +43,7 @@ source .venv/bin/activate
 python -m pip install -U pip
 
 # install
-./dev install -U -e ".[all]"
+./dev install
 
 # start the server (optional)
 ./dev start 

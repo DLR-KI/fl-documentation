@@ -1,8 +1,6 @@
 #!/bin/bash
 
-# SPDX-FileCopyrightText: 2024 Benedikt Franke <benedikt.franke@dlr.de>
-# SPDX-FileCopyrightText: 2024 Florian Heinrich <florian.heinrich@dlr.de>
-#
+# SPDX-FileCopyrightText: 2026 German Aerospace Center (DLR)
 # SPDX-License-Identifier: Apache-2.0
 
 ###############################################################################
@@ -69,8 +67,7 @@ function version() {
 
 function versions() {
   info "versions"
-  info "$(python --version)"
-  info "$(python -m pip --version)"
+  info "$(uv --version)"
   if ! command -v npm > /dev/null 2>&1; then
     warn "npm not found, skipping npm version"
   else
@@ -83,22 +80,22 @@ function versions() {
 
 function install() {
   versions
-  info "install package"
-  if [ "$#" -eq "0" ]; then
-    python -m pip install -e .
-  else
-    python -m pip install "$@"
+  if ! command -v uv &> /dev/null; then
+    if ! command -v curl &> /dev/null; then
+      error "uv and curl are not installed. Please install one of them."
+      exit 1
+    fi
+    info "install uv"
+    curl -LsSf https://astral.sh/uv/install.sh | sh
   fi
+  info "install package"
+  uv sync --editable --all-extras
   info "install markdown linter"
   if command -v npm > /dev/null 2>&1; then
     npm install --no-save markdownlint-cli2
   else
     warn "npm not found, skipping markdownlint-cli2 installation"
   fi
-  info "post-install"
-  py_pack_dir="$(python -c 'import site; print(site.getsitepackages()[0])')"
-  info " + setup user documentation plugins"
-  cp "$py_pack_dir/plantuml_markdown/plantuml_markdown.py" "$py_pack_dir/markdown/extensions/"
 }
 
 function clean() {
@@ -143,46 +140,30 @@ function lint-scripts() {
 
 function doc() {
   versions
-  mkdocs_version="$(python -m mkdocs --version)"
-  info "${mkdocs_version#"python -m "}"
+  info "zensical version: $(uv run zensical --version)"
   info "start documentation server"
-  # check if the user has passed the --dirtyreload flag
-  dirty_flag=false
-  for value in "$@"; do
-    [[ "--dirty" = "$value" ]] && dirty_flag=true
-  done
-  if [[ "$dirty_flag" == "false" ]]; then
-    warn "consider using --dirty to reload only file changes instead of the"
-    warn "whole project. This can lead to a significant speed up during the"
-    warn "documentation development."
-  fi
   # create and serve documentation
-  python -m mkdocs serve "$@"
+  uv run zensical serve "$@"
 }
 
 function doc-build() {
   versions
-  mkdocs_version="$(python -m mkdocs --version)"
-  info "${mkdocs_version#"python -m "}"
+  info "zensical version: $(uv run zensical --version)"
   info "build documentation"
-  python -m mkdocs build "$@"
+  uv run zensical build "$@"
 }
 
 function licenses() {
   info "search for license conflicts"
-  python -m licensecheck
+  uv run licensecheck
   info "search for non-compliant files with REUSE"
-  python -m reuse lint
+  uv run reuse lint
 }
 
 function safety-check() {
   info "check dependencies for known security vulnerabilities"
   # main only no dev dependencies etc.
-  python -m tox --recreate -e safety
-  # alternative
-  #python -m pip install -U safety
-  #safety check
-  ##python -m pip uninstall safety
+  uv run tox --recreate -e safety
 }
 
 

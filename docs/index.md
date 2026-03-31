@@ -4,9 +4,7 @@ hide:
     - navigation
 ---
 <!--
-SPDX-FileCopyrightText: 2024 Benedikt Franke <benedikt.franke@dlr.de>
-SPDX-FileCopyrightText: 2024 Florian Heinrich <florian.heinrich@dlr.de>
-
+SPDX-FileCopyrightText: 2026 German Aerospace Center (DLR)
 SPDX-License-Identifier: CC-BY-4.0
 -->
 
@@ -35,6 +33,15 @@ part of the [Catena-X Automotive Network](https://catena-x.net/en) project which
 
 The entire platform is a Prove of Concept (PoC).
 It is intended to show that decentralized machine learning is possible in the industry and the Catena-X automotive network.
+
+<div id="fl-video"></div>
+<script type="text/javascript" src="https://cdn.screen9.com/players/iframe-api.js"></script>
+<script type="text/javascript">
+    var player = new screen9.Player({
+        mediaid: "hIlq0V8-S1PLOICw3c0hemIkT9VGtTq53R8qn3czqoJGJxIKtTHt8avfbuM15xWm",
+        containerid: "fl-video",
+    });
+</script>
 
 ## Repositories
 

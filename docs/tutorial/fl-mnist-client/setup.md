@@ -1,7 +1,5 @@
 <!--
-SPDX-FileCopyrightText: 2024 Benedikt Franke <benedikt.franke@dlr.de>
-SPDX-FileCopyrightText: 2024 Florian Heinrich <florian.heinrich@dlr.de>
-
+SPDX-FileCopyrightText: 2026 German Aerospace Center (DLR)
 SPDX-License-Identifier: CC-BY-4.0
 -->
 
@@ -45,7 +43,7 @@ behaviors.
 | `FL_CLIENT_SERVER_HOST`                                                                                    | Client server hostname.<br/>Default: `0.0.0.0`                                             |
 | `FL_CLIENT_SERVER_PORT`                                                                                    | Client server port.<br/>Default: `8101`                                                    |
 
-Please note, some of these variables can be overridden within the [settings](./fl-mnist-client.md#file-srcsettingspy)
+Please note, some of these variables can be overridden within the [settings](./fl-mnist-client.md#srcsettingspy)
 module.
 
 ## Prepare dependencies
@@ -86,7 +84,7 @@ source .venv/bin/activate
 python -m pip install -U pip
 
 # install
-./dev install -U -e ".[all]"
+./dev install
 
 cd ..
 ```

@@ -1,6 +1,4 @@
-# SPDX-FileCopyrightText: 2024 Benedikt Franke <benedikt.franke@dlr.de>
-# SPDX-FileCopyrightText: 2024 Florian Heinrich <florian.heinrich@dlr.de>
-#
+# SPDX-FileCopyrightText: 2026 German Aerospace Center (DLR)
 # SPDX-License-Identifier: Apache-2.0
 
 name: Main
@@ -13,10 +11,8 @@ jobs:
   lint-doc:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 18
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
       - name: Install node dependencies
         run: npm install --no-save markdownlint-cli2
       - name: Start static code analysis
@@ -25,20 +21,19 @@ jobs:
   lint-scripts:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Start shell script analysis tool
         run: bash ./dev lint-scripts
 
   license-check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v6
+      - uses: astral-sh/setup-uv@v7
         with:
-          python-version: '3.10'
-          cache: 'pip'
+          python-version: "3.10"
       - name: Install dependencies
-        run: bash ./dev install -e ".[all]"
+        run: bash ./dev install
       - name: Start license check
         run: bash ./dev licenses
 
@@ -46,13 +41,12 @@ jobs:
     needs: [lint-doc, lint-scripts, license-check]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v6
+      - uses: astral-sh/setup-uv@v7
         with:
-          python-version: '3.10'
-          cache: 'pip'
+          python-version: "3.10"
       - name: Install dependencies
-        run: bash ./dev install -e ".[all]"
+        run: bash ./dev install
       - name: Build pages
         run: bash ./dev doc-build
       - name: Fix permissions
@@ -61,7 +55,7 @@ jobs:
             echo "::warning title=Invalid file permissions automatically fixed::$line"
           done
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v4
         with:
           path: site
 
@@ -78,4 +72,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v3
+        uses: actions/deploy-pages@v5
