@@ -128,7 +128,8 @@ dependencies = [] # Optional
 dev = [
   "zensical",
   "reuse",
-  "tox"
+  "tox",
+  "plantuml-markdown~=3.9.2"
 ]
 test = [
   "licensecheck",
