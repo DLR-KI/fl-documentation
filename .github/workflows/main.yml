@@ -40,6 +40,8 @@ jobs:
   build-pages:
     needs: [lint-doc, lint-scripts, license-check]
     runs-on: ubuntu-latest
+    env:
+      DEPLOY: true
     steps:
       - uses: actions/checkout@v6
       - uses: astral-sh/setup-uv@v7
