@@ -6,9 +6,7 @@
 # package, this name will be registered for you. It will determine how
 # users can install this project, e.g.:
 #
-# $ pip install sampleproject
-#
-# And where it will live on PyPI: https://pypi.org/project/sampleproject/
+# $ uv add "fl-documentation @ git+https://github.com/DLR-KI/fl-documentation.git"
 #
 # There are some restrictions on what makes a valid project name
 # specification here:
@@ -119,7 +117,7 @@ dependencies = [] # Optional
 # dependencies). Users will be able to install these using the "extras"
 # syntax, for example:
 #
-#   $ uv sync --editable --all-extras
+#   $ uv sync --all-extras
 #
 # Similar to `dependencies` above, these must be valid existing
 # projects.
