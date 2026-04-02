@@ -23,30 +23,16 @@ They offer a more user-friendly interface and comprehensive guides to get you st
 
 ## Requirements
 
-- python 3.7 or later  
+- python 3.10 or later  
   `which python`
-- virtualenv or venv  
-  `pip install -U virtualenv`
+- [uv](https://docs.astral.sh/uv/)  
+  `curl -LsSf https://astral.sh/uv/install.sh | sh`
 
 ## Install
 
 ```bash
-# create virtual environment
-virtualenv -p $(which python3.7) .venv
-# or
-# python -m venv .venv
-
-# activate our virtual environment
-source .venv/bin/activate
-
-# update pip (optional)
-python -m pip install -U pip
-
-# install
+# create virtual environment and install dependencies
 ./dev install
-
-# start the server (optional)
-./dev start 
 ```
 
 ## Helpers
