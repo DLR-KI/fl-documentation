@@ -1,7 +1,4 @@
-# SPDX-FileCopyrightText: 2024 Benedikt Franke <benedikt.franke@dlr.de>
-# SPDX-FileCopyrightText: 2024 Florian Heinrich <florian.heinrich@dlr.de>
-# SPDX-FileCopyrightText: 2024 Johannes Unruh <johannes.unruh@dlr.de>
-#
+# SPDX-FileCopyrightText: 2026 German Aerospace Center (DLR)
 # SPDX-License-Identifier: Apache-2.0
 
 [project]
@@ -9,9 +6,7 @@
 # package, this name will be registered for you. It will determine how
 # users can install this project, e.g.:
 #
-# $ pip install sampleproject
-#
-# And where it will live on PyPI: https://pypi.org/project/sampleproject/
+# $ uv add "fl-documentation @ git+https://github.com/DLR-KI/fl-documentation.git"
 #
 # There are some restrictions on what makes a valid project name
 # specification here:
@@ -23,7 +18,7 @@ name = "fl-documentation"  # Required
 #
 # For a discussion on single-sourcing the version, see
 # https://packaging.python.org/guides/single-sourcing-package-version/
-version = "1.0.0"  # Required
+version = "1.0.1"  # Required
 
 # This is a one-line description or tagline of what your project does. This
 # corresponds to the "Summary" metadata field:
@@ -44,13 +39,16 @@ readme = "README.md" # Optional
 # 'Programming Language' classifiers above, 'pip install' will check this
 # and refuse to install the project if the version does not match. See
 # https://packaging.python.org/guides/distributing-packages-using-setuptools/#python-requires
-requires-python = ">=3.7"
+requires-python = ">=3.10"
 
-# This is either text indicating the license for the distribution, or a file
-# that contains the license
-# https://packaging.python.org/en/latest/specifications/core-metadata/#license
-license = {text = "Creative Commons Attribution 4.0 International"}
-# license file see: [tool.setuptools] -> license-files
+# SPDX license expression indicating the license for the distribution.
+# Value is mapped to the License-Expression field in the core metadata.
+# https://packaging.python.org/en/latest/specifications/core-metadata/#license-expression
+license = "CC-BY-4.0"
+
+# License file paths relative to the project root directory.
+# https://packaging.python.org/en/latest/specifications/core-metadata/#license-expression
+license-files = ["LICENSE.md", "LICENSES/*"]
 
 # This field adds keywords for your project which will appear on the
 # project page. What does your project relate to?
@@ -101,6 +99,9 @@ classifiers = [  # Optional
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
   "Programming Language :: Python :: 3 :: Only",
 ]
 
@@ -116,20 +117,20 @@ dependencies = [] # Optional
 # dependencies). Users will be able to install these using the "extras"
 # syntax, for example:
 #
-#   $ pip install ".[all]"
+#   $ uv sync --all-extras
 #
 # Similar to `dependencies` above, these must be valid existing
 # projects.
 [project.optional-dependencies] # Optional
 dev = [
-  "mkdocs-material~=9.5.4",
-  "plantuml-markdown~=3.9.2",  # post-install: cp plantuml_markdown.py into markdown/extensions
-  "reuse~=4.0.3",
-  "tox~=4.5.1"
+  "zensical",
+  "reuse",
+  "tox",
+  "plantuml-markdown~=3.9.2"
 ]
 test = [
-  "licensecheck",  # no version, install latest version
-  "shellcheck-py~=0.9.0.6",
+  "licensecheck",
+  "shellcheck-py",
 ]
 all = ["fl-documentation[dev,test]"]
 
@@ -163,7 +164,6 @@ all = ["fl-documentation[dev,test]"]
 # installed, specify them here.
 packages = []
 #package-data = {"" = ["py.typed"]}
-license-files = ["LICENSES/Apache-2.0.txt", "LICENSES/CC-BY-4.0.txt", "LICENSES/LicenseRef-Proprietary.txt"]
 
 #######################################################################################################################
 
