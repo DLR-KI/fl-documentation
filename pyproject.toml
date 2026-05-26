@@ -165,6 +165,9 @@ all = ["fl-documentation[dev,test]"]
 packages = []
 #package-data = {"" = ["py.typed"]}
 
+[tool.uv]
+exclude-newer = "7 days"
+
 #######################################################################################################################
 
 # licensecheck
